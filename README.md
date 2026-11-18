@@ -2,11 +2,23 @@
 
 Java 17+ desktop complaint-management application built with Swing, JDBC, MySQL, Maven, FlatLaf and BCrypt.
 
-## Repository status
+## Project files
 
-This repository currently contains the Maven configuration, database scripts, example configuration, `.gitignore`, `.gitattributes` and this README. The Java source directory (`src/`), project report, diagrams, screenshots and packaged application are **not yet committed**.
+- `pom.xml` — Maven build configuration
+- `src/main/java/` — application source code (33 Java files)
+- `database/` — database schema and optional sample data
+- `application.properties.example` — example local database configuration
+- `package-windows.ps1` — script to build a Windows app-image
+- `dist/README.txt` and `dist/Run Complaint Portal.bat` — Windows launch guidance
+- `source-code/complaint-portal-source.tar.xz` — compressed bundle of the Java source tree and Windows packaging helpers
 
-To complete the repository, extract the prepared `project_payload.zip` package and upload its contents to the repository root using **Add file → Upload files**. The package contains the source code, SQL, Maven files, project report, diagrams, screenshots and a runnable JAR. The five duplicate bundled Windows Java runtime folders are intentionally excluded because they add hundreds of megabytes of repeated generated binaries.
+To extract the source bundle at the repository root, run:
+
+```sh
+tar -xJf source-code/complaint-portal-source.tar.xz
+```
+
+The source bundle includes `src/`, `package-windows.ps1`, and the two lightweight `dist/` helper files. It does not include the bundled runtime folders, project report, report images, or compiled JAR. Those binaries and report documents from the original upload have not been added to this repository yet.
 
 ## Requirements
 
@@ -17,8 +29,11 @@ To complete the repository, extract the prepared `project_payload.zip` package a
 ## Configure and run
 
 1. Create a MySQL database named `complaint_portal` or allow the application to initialize it.
-2. Copy `application.properties.example` to `application.properties` and set the database username and password.
-3. Build with `mvn clean package`.
+2. Copy `application.properties.example` to `application.properties` and set your database username and password. This local file is ignored by Git.
+3. Build with:
+   ```sh
+   mvn clean package
+   ```
 4. Run the generated JAR from `target/`.
 
-`application.properties` is intentionally ignored by Git. Do not commit local credentials or production passwords.
+Do not commit local credentials or production passwords. Change the demonstration administrator password before using the application in a real environment.
